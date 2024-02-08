@@ -15,6 +15,7 @@ typedef unsigned char TTL7493_PINS;
 
 #define TTL7493_SET_CLK(p) ((p)|=TTL7493_CLK)
 #define TTL7493_RESET_CLK(p) ((p)&=~TTL7493_CLK)
+#define TTL7493_PUT_CLK(p,t) ((p)&=~TTL7493_CLK,(p)|=(t?TTL7493_CLK:0))
 #define TTL7493_SET_CLR1(p) ((p)|=TTL7493_CLR1)
 #define TTL7493_RESET_CLR1(p) ((p)&=~TTL7493_CLR1)
 #define TTL7493_SET_CLR2(p) ((p)|=TTL7493_CLR2)

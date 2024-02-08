@@ -14,6 +14,7 @@ typedef unsigned char TTL74107_PINS;
 
 #define TTL74107_SET_CLK(p) ((p)|=TTL74107_CLK)
 #define TTL74107_RESET_CLK(p) ((p)&=~TTL74107_CLK)
+#define TTL74107_PUT_CLK(p,t) ((p)&=~TTL74107_CLK,(p)|=(t?TTL74107_CLK:0))
 #define TTL74107_SET_J(p) ((p)|=TTL74107_J)
 #define TTL74107_RESET_J(p) ((p)&=~TTL74107_J)
 #define TTL74107_SET_K(p) ((p)|=TTL74107_K)

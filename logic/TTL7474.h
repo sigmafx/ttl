@@ -14,8 +14,10 @@ typedef unsigned char TTL7474_PINS;
 
 #define TTL7474_SET_CLK(p) ((p)|=TTL7474_CLK)
 #define TTL7474_RESET_CLK(p) ((p)&=~TTL7474_CLK)
+#define TTL7474_PUT_CLK(p,t) ((p)&=~TTL7474_CLK,(p)|=(t?TTL7474_CLK:0))
 #define TTL7474_SET_D(p) ((p)|=TTL7474_D)
 #define TTL7474_RESET_D(p) ((p)&=~TTL7474_D)
+#define TTL7474_PUT_D(p,t) ((p)&=~TTL7474_D,(p)|=(t?TTL7474_D:0))
 #define TTL7474_SET_PRE(p) ((p)|=TTL7474_PRE)
 #define TTL7474_RESET_PRE(p) ((p)&=~TTL7474_PRE)
 #define TTL7474_SET_CLR(p) ((p)|=TTL7474_CLR)
