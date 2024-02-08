@@ -1,3 +1,4 @@
+/* D-TYPE FLIP-FLOP +VE CLOCK */
 typedef unsigned char TTL7474_PINS;
 
 #define TTL7474_CLK     (1 << 0)

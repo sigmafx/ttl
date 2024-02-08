@@ -1,3 +1,5 @@
+/* J-K FLIP-FLOP -VE CLOCK */
+
 typedef unsigned char TTL74107_PINS;
 
 #define TTL74107_CLK    (1 << 0)

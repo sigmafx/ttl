@@ -1,3 +1,5 @@
+/* 4-BIT COUNTER -VE CLOCK */
+
 typedef unsigned char TTL7493_PINS;
 
 #define TTL7493_CLK     (1 << 0)

@@ -1,3 +1,4 @@
+/* 8-INPUT NAND */
 typedef unsigned short TTL7430_PINS;
 
 #define TTL7430_A   (1 << 0)
