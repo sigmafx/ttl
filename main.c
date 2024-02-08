@@ -17,7 +17,9 @@
 
 bool clock = false;
 
-TTL7474_PINS pins7474_E7 = TTL7474_INIT;
+TTL7410_PINS pins7410_D8 = TTL7410_INIT;
+TTL7474_PINS pins7474_E7_1 = TTL7474_INIT;
+TTL7474_PINS pins7474_E7_2 = TTL7474_INIT;
 TTL74107_PINS pins74107_F6 = TTL74107_INIT;
 TTL7430_PINS pins7430_F7 = TTL7430_INIT;
 TTL7493_PINS pins7493_F8 = TTL7493_INIT;
@@ -66,12 +68,12 @@ int main() {
         pins7430_F7 = TTL7430_ACT(pins7430_F7);
 
         /* E7 */
-        TTL7474_PUT_CLK(pins7474_E7,clock);
-        TTL7474_PUT_D(pins7474_E7,TTL7430_GET_Y(pins7430_F7));
-        pins7474_E7 = TTL7474_ACT(pins7474_E7);
+        TTL7474_PUT_CLK(pins7474_E7_2,clock);
+        TTL7474_PUT_D(pins7474_E7_2,TTL7430_GET_Y(pins7430_F7));
+        pins7474_E7_2 = TTL7474_ACT(pins7474_E7_2);
 
         /* HRESET */
-        if(TTL7474_GET_Q(pins7474_E7))
+        if(TTL7474_GET_Q(pins7474_E7_2))
         {
             TTL74107_SET_CLR(pins74107_F6);
         }
@@ -80,7 +82,7 @@ int main() {
             TTL74107_RESET_CLR(pins74107_F6);
         }
 
-        if(TTL7474_GET_QQ(pins7474_E7))
+        if(TTL7474_GET_QQ(pins7474_E7_2))
         {
             TTL7493_SET_CLR1(pins7493_F8);
             TTL7493_SET_CLR2(pins7493_F8);
@@ -102,7 +104,7 @@ int main() {
         /* Report */
         printf("%s: (Reset: %s) %d\n",
             clock ? "H" : "L",
-            TTL7474_GET_Q(pins7474_E7) ? "-" : "Y",
+            TTL7474_GET_Q(pins7474_E7_2) ? "-" : "Y",
             ((pins7493_F8 & 0xF0) >> 4) + (pins7493_F9 & 0xF0) + (TTL74107_GET_Q(pins74107_F6) ? 256 : 0));
 
         usleep(10000);
