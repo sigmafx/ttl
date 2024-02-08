@@ -2,6 +2,7 @@
 #include "logic/TTL7493.h"
 #include "logic/TTL74107.h"
 #include "logic/TTL7430.h"
+#include "logic/TTL7410.h"
 
 #include <stdbool.h>
 #include <stdio.h>
