@@ -25,16 +25,19 @@ TTL7430_PINS pins7430_F7 = TTL7430_INIT;
 TTL7493_PINS pins7493_F8 = TTL7493_INIT;
 TTL7493_PINS pins7493_F9 = TTL7493_INIT;
 
-#define PIN_CLK()     clock
-#define PIN_1H()      TTL7493_GET_Q0(pins7493_F8)
-#define PIN_2H()      TTL7493_GET_Q1(pins7493_F8)
-#define PIN_4H()      TTL7493_GET_Q2(pins7493_F8)
-#define PIN_8H()      TTL7493_GET_Q3(pins7493_F8)
-#define PIN_16H()     TTL7493_GET_Q0(pins7493_F9)
-#define PIN_32H()     TTL7493_GET_Q1(pins7493_F9)
-#define PIN_64H()     TTL7493_GET_Q2(pins7493_F9)
-#define PIN_128H()    TTL7493_GET_Q3(pins7493_F9)
-#define PIN_256H()    TTL74107_GET_Q(pins74107_F6)
+#define PIN_CLK()       clock
+#define PIN_1H()        TTL7493_GET_Q0(pins7493_F8)
+#define PIN_2H()        TTL7493_GET_Q1(pins7493_F8)
+#define PIN_4H()        TTL7493_GET_Q2(pins7493_F8)
+#define PIN_8H()        TTL7493_GET_Q3(pins7493_F8)
+#define PIN_16H()       TTL7493_GET_Q0(pins7493_F9)
+#define PIN_32H()       TTL7493_GET_Q1(pins7493_F9)
+#define PIN_64H()       TTL7493_GET_Q2(pins7493_F9)
+#define PIN_128H()      TTL7493_GET_Q3(pins7493_F9)
+#define PIN_256H()      TTL74107_GET_Q(pins74107_F6)
+#define _PIN_256H()     TTL74107_GET_QQ(pins74107_F6)
+#define PIN_HRESET()    TTL7474_GET_QQ(pins7474_E7_2)
+#define _PIN_HRESET()   TTL7474_GET_Q(pins7474_E7_2)
 
 int main() {
     /* Hard wire */
@@ -47,6 +50,10 @@ int main() {
 
     while(true)
     {
+        /*-------*/
+        /* HSYNC */
+        /*-------*/
+
         /* F8 */
         TTL7493_PUT_CLK(pins7493_F8,clock);
         pins7493_F8 = TTL7493_ACT(pins7493_F8);
@@ -101,14 +108,20 @@ int main() {
         pins7493_F8 = TTL7493_ACT(pins7493_F8);
         pins7493_F9 = TTL7493_ACT(pins7493_F9);
 
-        /* Report */
+        /*-------*/
+        /* VSYNC */
+        /*-------*/
+
+        clock = !clock;
+
+        /*--------*/
+        /* REPORT */
+        /*--------*/
         printf("%s: (Reset: %s) %d\n",
             clock ? "H" : "L",
             TTL7474_GET_Q(pins7474_E7_2) ? "-" : "Y",
-            ((pins7493_F8 & 0xF0) >> 4) + (pins7493_F9 & 0xF0) + (TTL74107_GET_Q(pins74107_F6) ? 256 : 0));
-
+            ((pins7493_F8 & 0xF0) >> 4) + (pins7493_F9 & 0xF0) + (PIN_256H() ? 256 : 0));
         usleep(10000);
-        clock = !clock;
     }
     return 0;
 }
