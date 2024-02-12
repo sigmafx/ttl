@@ -10,15 +10,15 @@ typedef unsigned char TTL7474_PINS;
 #define TTL7474_QQ      (1 << 6)
 #define TTL7474_IN      (TTL7474_CLK|TTL7474_D|TTL7474_PRE|TTL7474_CLR|TTL7474_CLKPRE|TTL7474_Q)
 
-#define TTL7474_INIT    TTL7474_PRE|TTL7474_CLR
+#define TTL7474_INIT    0b00000000
 #define TTL7474_ACT(p) (TTL7474[(p)&TTL7474_IN])
 
 #define TTL7474_SET_CLK(p) ((p)|=TTL7474_CLK)
 #define TTL7474_RESET_CLK(p) ((p)&=~TTL7474_CLK)
-#define TTL7474_PUT_CLK(p,t) ((p)&=~TTL7474_CLK,(p)|=(t?TTL7474_CLK:0))
+#define TTL7474_PUT_CLK(p,t) ((p)&=~TTL7474_CLK,(p)|=((t)?TTL7474_CLK:0))
 #define TTL7474_SET_D(p) ((p)|=TTL7474_D)
 #define TTL7474_RESET_D(p) ((p)&=~TTL7474_D)
-#define TTL7474_PUT_D(p,t) ((p)&=~TTL7474_D,(p)|=(t?TTL7474_D:0))
+#define TTL7474_PUT_D(p,t) ((p)&=~TTL7474_D,(p)|=((t)?TTL7474_D:0))
 #define TTL7474_SET_PRE(p) ((p)|=TTL7474_PRE)
 #define TTL7474_RESET_PRE(p) ((p)&=~TTL7474_PRE)
 #define TTL7474_SET_CLR(p) ((p)|=TTL7474_CLR)

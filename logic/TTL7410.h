@@ -13,13 +13,13 @@ typedef unsigned char TTL7410_PINS;
 
 #define TTL7410_SET_A(p) ((p)|=TTL7410_A)
 #define TTL7410_RESET_A(p) ((p)&=~TTL7410_A)
-#define TTL7410_PUT_A(p,t) ((p)&=~TTL7410_A,(p)|=(t?TTL7410_A:0))
+#define TTL7410_PUT_A(p,t) ((p)&=~TTL7410_A,(p)|=((t)?TTL7410_A:0))
 #define TTL7410_SET_B(p) ((p)|=TTL7410_B)
 #define TTL7410_RESET_B(p) ((p)&=~TTL7410_B)
-#define TTL7410_PUT_B(p,t) ((p)&=~TTL7410_B,(p)|=(t?TTL7410_B:0))
+#define TTL7410_PUT_B(p,t) ((p)&=~TTL7410_B,(p)|=((t)?TTL7410_B:0))
 #define TTL7410_SET_C(p) ((p)|=TTL7410_C)
 #define TTL7410_RESET_C(p) ((p)&=~TTL7410_C)
-#define TTL7410_PUT_C(p,t) ((p)&=~TTL7410_C,(p)|=(t?TTL7410_C:0))
+#define TTL7410_PUT_C(p,t) ((p)&=~TTL7410_C,(p)|=((t)?TTL7410_C:0))
 
 #define TTL7410_GET_Y(p) ((p)&TTL7410_Y)
 
